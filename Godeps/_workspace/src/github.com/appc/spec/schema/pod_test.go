@@ -17,7 +17,7 @@ package schema
 import (
 	"testing"
 
-	"github.com/huawei-openlab/oct/tools/ociConvert/Godeps/_workspace/src/github.com/appc/spec/schema/types"
+	"github.com/appc/spec/schema/types"
 )
 
 func TestPodManifestMerge(t *testing.T) {

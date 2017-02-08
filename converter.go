@@ -18,11 +18,12 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/appc/spec/schema"
-	"github.com/huawei-openlab/oct/tools/ociConvert/lib"
-	"github.com/opencontainers/specs"
 	"os"
 	"path"
+
+	"github.com/appc/spec/schema"
+	"github.com/crackcomm/aci2oci/convert"
+	"github.com/opencontainers/specs"
 )
 
 func convertRocketFile(imagePath string, podPath string) {
@@ -40,16 +41,16 @@ func convertRocketFile(imagePath string, podPath string) {
 	}
 	json.Unmarshal([]byte(content), &image)
 
-	content, err = ReadFile(podPath)
-	if err != nil {
-		fmt.Println("Cannot parse pod file: ", podPath)
-		return
-	}
-	json.Unmarshal([]byte(content), &pod)
+	// content, err = ReadFile(podPath)
+	// if err != nil {
+	// 	fmt.Println("Cannot parse pod file: ", podPath)
+	// 	return
+	// }
+	// json.Unmarshal([]byte(content), &pod)
 
 	PreparePath("output", "")
 
-	ls, msgs = specsConvert.LinuxSpecFrom(image, msgs)
+	ls, msgs = convert.LinuxSpecFrom(image, msgs)
 	val, _ := json.MarshalIndent(ls, "", "\t")
 	output := "output/config.json"
 	fout, err := os.Create(output)
@@ -61,7 +62,7 @@ func convertRocketFile(imagePath string, podPath string) {
 		fout.Close()
 	}
 
-	lrs, msgs = specsConvert.LinuxRuntimeSpecFrom(image, pod, msgs)
+	lrs, msgs = convert.LinuxRuntimeSpecFrom(image, pod, msgs)
 	val, _ = json.MarshalIndent(lrs, "", "\t")
 	output = "output/runtime.json"
 	fout, err = os.Create(output)

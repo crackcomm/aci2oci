@@ -19,7 +19,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/huawei-openlab/oct/tools/ociConvert/Godeps/_workspace/src/github.com/coreos/go-semver/semver"
+	"github.com/coreos/go-semver/semver"
 )
 
 func TestMarshalSemver(t *testing.T) {

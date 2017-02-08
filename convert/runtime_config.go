@@ -1,4 +1,4 @@
-package specsConvert
+package convert
 
 import (
 	"github.com/appc/spec/schema"

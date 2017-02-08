@@ -15,8 +15,9 @@
 package main
 
 import (
-	"github.com/codegangsta/cli"
 	"os"
+
+	"github.com/codegangsta/cli"
 )
 
 func convertProcess(context *cli.Context) {
@@ -29,20 +30,9 @@ func convertProcess(context *cli.Context) {
 // It is a cli framework.
 func main() {
 	app := cli.NewApp()
-	app.Name = "oci-convert"
-	app.Usage = "Tools for convert between different container bundle/image"
+	app.Name = "aci2oci"
+	app.Usage = "Convert container formats from aci to oci: config and bundle"
 	app.Version = "1.0.0"
-	app.Commands = []cli.Command{
-		{
-			Name:    "aci2oci",
-			Aliases: []string{"a2o"},
-			Usage:   "convert container formats from aci to oci: config and bundle",
-
-			Action: convertProcess,
-		},
-	}
-
+	app.Action = convertProcess
 	app.Run(os.Args)
-
-	return
 }

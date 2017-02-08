@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-import "github.com/huawei-openlab/oct/tools/ociConvert/Godeps/_workspace/src/speter.net/go/exp/math/dec/inf"
+import "speter.net/go/exp/math/dec/inf"
 
 func ExampleDec_SetString() {
 	d := new(inf.Dec)

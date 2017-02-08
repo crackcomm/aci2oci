@@ -1,12 +1,13 @@
 // +build linux
 
-package specsConvert
+package convert
 
 import (
 	"encoding/json"
+	"strconv"
+
 	"github.com/appc/spec/schema"
 	"github.com/opencontainers/specs"
-	"strconv"
 )
 
 /*
@@ -76,9 +77,7 @@ type User struct {
 }
 */
 
-func UserFrom(image schema.ImageManifest, msgs []string) (specs.User, []string) {
-	var u specs.User
-
+func UserFrom(image schema.ImageManifest, msgs []string) (u specs.User, _ []string) {
 	UID, err := strconv.Atoi(image.App.User)
 	if err != nil {
 		msgs = append(msgs, "User.UID invalid")

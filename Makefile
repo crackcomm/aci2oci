@@ -1,5 +1,5 @@
 all:
-	go build -o ociConvert
+	GOPATH=`pwd`/Godeps/_workspace:${GOPATH} go build -o aci2oci
 
 clean:
-	rm ociConvert
+	rm aci2oci

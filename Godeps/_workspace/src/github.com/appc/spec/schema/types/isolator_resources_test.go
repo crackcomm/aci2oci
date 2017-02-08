@@ -18,7 +18,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/huawei-openlab/oct/tools/ociConvert/Godeps/_workspace/src/k8s.io/kubernetes/pkg/api/resource"
+	"k8s.io/kubernetes/pkg/api/resource"
 )
 
 func mustQuantity(s string) *resource.Quantity {

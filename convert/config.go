@@ -1,7 +1,8 @@
-package specsConvert
+package convert
 
 import (
 	"fmt"
+
 	"github.com/appc/spec/schema"
 	"github.com/opencontainers/specs"
 )
@@ -72,10 +73,12 @@ func ProcessFrom(image schema.ImageManifest, msgs []string) (specs.Process, []st
 	p.Terminal = false
 	msgs = append(msgs, "terminal is not exist in aci-0.6.1")
 
-	p.User, msgs = UserFrom(image, msgs)
-	p.Args, msgs = ArgsFrom(image, msgs)
-	p.Env, msgs = EnvFrom(image, msgs)
-	p.Cwd = image.App.WorkingDirectory
+	if image.App != nil {
+		p.User, msgs = UserFrom(image, msgs)
+		p.Args, msgs = ArgsFrom(image, msgs)
+		p.Env, msgs = EnvFrom(image, msgs)
+		p.Cwd = image.App.WorkingDirectory
+	}
 
 	return p, msgs
 }

@@ -1,4 +1,4 @@
-package specsConvert
+package convert
 
 import (
 	"regexp"
